@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Product } from './products.model';
 import { ProductsService } from './products.service';
 
@@ -31,6 +33,7 @@ export class ProductsController {
     return { id: pId };
   }
 
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async getProducts(): Promise<Product[]> {
     return await this.productsService.getAllProducts();
